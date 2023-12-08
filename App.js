@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+
+import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
 function randomizeString(s) {
   const arr = [...s];
@@ -18,17 +19,32 @@ function swapElements(arr, i, j) {
 }
 
 export default function App() {
-  const letters = 'abcdefghijklmnopqrstuvwxyz';
-  const [randomLetters, setRandomLetters] = useState(null);
-
+  const letters = 'node';
+  const [randomLetters, setRandomLetters] = useState('');
+  const [userWord, setUserWord] = useState('');
+  const [winLoss, setWinLoss] = useState(null);
   const updateRandomLetters = () => {
     setRandomLetters(randomizeString(letters));
   };
+  const didYouGuessIt = () => {
+    if (userWord === letters) {
+      setWinLoss('Won!');
+    } else {
+      setWinLoss('Loss!');
+    }
+  };
   return (
     <View style={styles.container}>
-      <Text>Lets randomize the alphabet: {letters}</Text>
-      {randomLetters && <Text>Randomized: {randomLetters}</Text>}
-      <Button title='Randomize Me!' onPress={updateRandomLetters}></Button>
+      <Text>Press the start button to start guessing!</Text>
+      {randomLetters && <Text>Guess Me! {randomLetters}</Text>}
+      <Button title='Start' onPress={updateRandomLetters} />
+      <TextInput
+        value={userWord}
+        onChangeText={setUserWord}
+        placeholder='Type something here'
+      />
+      <Button title='Submit' onPress={didYouGuessIt} />
+      {winLoss && <Text>Status: {winLoss}</Text>}
       <StatusBar style='auto' />
     </View>
   );
