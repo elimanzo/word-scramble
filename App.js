@@ -10,7 +10,7 @@ const WORDBANK = [
   'heap',
   'stack',
   'queue',
-  'trees'
+  'trees',
 ];
 
 function randomizeString(s) {
@@ -69,11 +69,11 @@ export default function App() {
               const regex = new RegExp(setStr, 'g');
               setUserWord(text.toUpperCase().replace(regex, ''));
             }}
-            placeholder='Enter Word Guess'
+            placeholder="Enter Word Guess"
           />
           {winLoss === '' && (
             <Button
-              title='Submit'
+              title="Submit"
               onPress={didYouGuessIt}
               style={styles.button}
             />
@@ -85,7 +85,7 @@ export default function App() {
                 start again!
               </Text>
               <Button
-                title='Reset'
+                title="Reset"
                 onPress={setWordToGuess}
                 style={styles.button}
               />
@@ -96,13 +96,13 @@ export default function App() {
         <>
           <Text style={styles.instructions}>Press Start to play!</Text>
           <Button
-            title='Start'
+            title="Start"
             onPress={setWordToGuess}
             style={styles.button}
           />
         </>
       )}
-      <StatusBar style='auto' />
+      <StatusBar style="auto" />
     </View>
   );
 }
@@ -112,35 +112,35 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   title: {
     fontSize: 24,
-    marginBottom: 20
+    marginBottom: 20,
   },
   word: {
     fontSize: 18,
-    marginBottom: 10
+    marginBottom: 10,
   },
   input: {
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
     marginBottom: 10,
-    paddingHorizontal: 8
+    paddingHorizontal: 8,
   },
   button: {
-    marginTop: 10
+    marginTop: 10,
   },
   resultContainer: {
     marginTop: 20,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   resultText: {
-    marginBottom: 10
+    marginBottom: 10,
   },
   instructions: {
     fontSize: 16,
-    marginBottom: 20
-  }
+    marginBottom: 20,
+  },
 });
