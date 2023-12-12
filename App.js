@@ -72,14 +72,17 @@ export default function App() {
       {gameOver ? (
         <>
           <Text style={styles.word}>GAME OVER!</Text>
+          <Text style={styles.resultText}>
+            Game Recap - Won: {score.wins} Lost: {score.losses} Win Ratio:{' '}
+            {Math.floor((score.wins / (score.losses + score.wins)) * 100)} %
+          </Text>
           <Button
-            title='Game Over'
+            title='Start Again!'
             onPress={() => {
               setWordBank([...WORDBANK]);
               setGameOver(false);
               setUserWord('');
               setRandomLetters('');
-              setScore({ wins: 0, losses: 0 });
             }}
             style={styles.button}
           />
@@ -121,7 +124,7 @@ export default function App() {
                     %
                   </Text>
                   <Button
-                    title='Reset'
+                    title='Next Word'
                     onPress={() => {
                       if (wordBank.length > 0) {
                         setWordToGuess();
@@ -140,7 +143,10 @@ export default function App() {
               <Text style={styles.instructions}>Press Start to play!</Text>
               <Button
                 title='Start'
-                onPress={setWordToGuess}
+                onPress={() => {
+                  setWordToGuess();
+                  setScore({ wins: 0, losses: 0 });
+                }}
                 style={styles.button}
               />
             </>
